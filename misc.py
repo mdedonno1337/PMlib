@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-from numpy import median
-
+import numpy as np
 
 ################################################################################
 # 
@@ -9,4 +8,4 @@ from numpy import median
 
 def medianXY( data ):
     x, y = zip( *data )
-    return median( x ), median( y )
+    return np.median( x ), np.median( y )
