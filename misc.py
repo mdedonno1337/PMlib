@@ -43,3 +43,13 @@ def multiDot( *argv ):
         )
     
     return ret
+
+def rotMatrix( theta, degree = True ):
+    if degree:
+        theta = theta / 180.0 * np.pi
+    
+    c = np.cos( theta )
+    s = np.sin( theta )
+    
+    return np.array( [[ c, -s, 0 ], [ s, c, 0 ], [ 0, 0, 1 ] ] ).T
+
