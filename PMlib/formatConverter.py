@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 #  *-* coding: cp850 *-*
 
-from lib.points import matrixApply
 
 import numpy as np
+
+from .misc import matrixApply
 
 
 def cooPIL2NIST( data, height, res ):
