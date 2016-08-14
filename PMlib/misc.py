@@ -53,3 +53,18 @@ def rotMatrix( theta, degree = True ):
     
     return np.array( [[ c, -s, 0 ], [ s, c, 0 ], [ 0, 0, 1 ] ] ).T
 
+################################################################################
+#    List manipulation
+################################################################################
+
+def shift_point( point, delta, revert = False ):
+    point = list( point )
+    r = -1 if revert else 1
+    
+    for i in xrange( len( delta ) ):
+        point[ i ] += r * delta[ i ]
+    
+    return point
+
+def shift_list( points, delta, revert = False ):
+    return [ shift_point( p, delta, revert ) for p in points ]
