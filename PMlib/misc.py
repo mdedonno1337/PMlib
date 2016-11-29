@@ -17,6 +17,9 @@ def meanXY( data ):
     x, y = zip( *data )
     return np.mean( x ), np.mean( y )
 
+def minmaxXY( data ):
+    return map( lambda a: ( max( a ) + min( a ) ) / 2, zip( *data ) )
+
 ################################################################################
 #    Matrix manipulation
 ################################################################################
