@@ -11,6 +11,10 @@ def medianXY( data ):
     x, y = zip( *data )
     return np.median( x ), np.median( y )
 
+def meanXY( data ):
+    x, y = zip( *data )
+    return np.mean( x ), np.mean( y )
+
 ################################################################################
 #    Matrix manipulation
 ################################################################################
