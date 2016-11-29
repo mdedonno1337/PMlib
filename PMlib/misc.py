@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+from __future__ import division
+
 import numpy as np
 
 ################################################################################
@@ -51,7 +53,7 @@ def multiDot( *argv ):
 
 def rotMatrix( theta, degree = True ):
     if degree:
-        theta = theta / 180.0 * np.pi
+        theta = theta / 180 * np.pi
     
     c = np.cos( theta )
     s = np.sin( theta )
