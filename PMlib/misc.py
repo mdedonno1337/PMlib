@@ -4,6 +4,7 @@
 from __future__ import division
 
 import numpy as np
+from scipy.spatial import Delaunay
 
 ################################################################################
 # 
@@ -81,3 +82,9 @@ def shift_point( point, delta, revert = False ):
 
 def shift_list( points, delta, revert = False ):
     return [ shift_point( p, delta, revert ) for p in points ]
+
+def in_hull( p, hull ):
+    if not isinstance( hull, Delaunay ):
+        hull = Delaunay( hull )
+
+    return hull.find_simplex( p ) >= 0
