@@ -4,7 +4,11 @@
 from __future__ import division
 
 import numpy as np
+
 from scipy.spatial import Delaunay
+from scipy.spatial import ConvexHull
+
+from MDmisc.elist import rotate, flatten
 
 ################################################################################
 # 
@@ -83,8 +87,31 @@ def shift_point( point, delta, revert = False ):
 def shift_list( points, delta, revert = False ):
     return [ shift_point( p, delta, revert ) for p in points ]
 
+################################################################################
+#    Hull related functions
+################################################################################
+
 def in_hull( p, hull ):
     if not isinstance( hull, Delaunay ):
         hull = Delaunay( hull )
 
     return hull.find_simplex( p ) >= 0
+
+def points_area( points ):
+    points = np.asarray( points )
+    hull = ConvexHull( points )
+    contour = list( flatten( hull.vertices ) )
+    corners = points[ contour, ].tolist()
+    return polygon_area( corners )
+
+def points_density( points ):
+    area = points_area( points )
+    return len( points ) / area
+    
+def polygon_area( corners ):
+    area = 0
+    x, y = zip( *corners )
+    for x, y1, y2 in zip( x, rotate( y, 1 ), rotate( y, -1 ) ):
+        area += x * ( y1 - y2 )
+    
+    return 0.5 * abs( area )
