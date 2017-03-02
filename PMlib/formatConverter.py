@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 #  *-* coding: cp850 *-*
 
-
 import numpy as np
 
 from .misc import matrixApply
 
 
 def cooPIL2NIST( data, height, res ):
-    if type( data ) == list:
+    try:
         return map( lambda x: cooPIL2NIST( x, height, res ), data )
-    else:
+    
+    except:
         return matrixApply( 
             data,
             np.dot( 
@@ -20,9 +20,10 @@ def cooPIL2NIST( data, height, res ):
         )
 
 def cooNIST2PIL( data, height, res ):
-    if type( data ) == list:
+    try:
         return map( lambda x: cooNIST2PIL( x, height, res ), data )
-    else:
+    
+    except:
         return matrixApply( 
             data,
             np.dot( 
